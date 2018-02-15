@@ -31,6 +31,7 @@
 #include <limits.h>
 #include <sys/time.h>
 
+void dhcps_nats_publish(void);
 static void maybe_return_agent_options(struct packet *packet,
 				       struct option_state *options);
 static int reuse_lease (struct packet* packet, struct lease* new_lease,
@@ -435,6 +436,8 @@ void dhcpdiscover (packet, ms_nulltp)
 	when = cur_time + 120;
 	if (when < lease -> ends)
 		when = lease -> ends;
+
+    dhcps_nats_publish();
 
 	ack_lease (packet, lease, DHCPOFFER, when, msgbuf, ms_nulltp,
 		   (struct host_decl *)0);

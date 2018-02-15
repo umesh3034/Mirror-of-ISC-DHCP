@@ -110,6 +110,8 @@ trace_type_t *trace_srandom;
 #endif
 
 char *progname;
+void dhcps_nats_connect(int argc, char **argv);
+
 
 static isc_result_t verify_addr (omapi_object_t *l, omapi_addr_t *addr) {
 	return ISC_R_SUCCESS;
@@ -1061,6 +1063,8 @@ main(int argc, char **argv) {
 	 * Receive packets and dispatch them...
 	 * dispatch() will never return.
 	 */
+
+    dhcps_nats_connect(0, NULL);
 	dispatch ();
 
 	/* Let's return status code */

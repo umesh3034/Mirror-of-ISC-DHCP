@@ -4499,7 +4499,7 @@ fi
 # user did not specify any flags. Add warnings in this case.
 if test "$GCC" = "yes"; then
 	if test "$CFLAGS" != "$SAVE_CFLAGS"; then
-		STD_CWARNINGS="$STD_CWARNINGS -Wall -Werror -fno-strict-aliasing"
+		STD_CWARNINGS="$STD_CWARNINGS -Wall -Werror -fno-strict-aliasing -pthread"
 	fi
 fi
 
@@ -7476,6 +7476,9 @@ CFLAGS="$CFLAGS $STD_CWARNINGS"
 
 # Try to add the bind and dhcp include directories
 CFLAGS="$CFLAGS -I\$(top_srcdir)/includes -I$BINDDIR/include"
+
+# for cnats
+CFLAGS="$CFLAGS -I\$(top_srcdir)/cnats/include"
 
 case "$host" in
 *-darwin*)
